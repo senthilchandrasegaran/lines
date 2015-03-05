@@ -1,5 +1,7 @@
 # Visualizing Movie Dialogues
 
+<img src="./img/example.png"/>
+
 Part of my work involves timeline-based visualizations of text
 utterances.
 Movie subtitle files are a convenient sample: they provide the dialogues
