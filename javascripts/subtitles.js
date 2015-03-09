@@ -95,8 +95,15 @@ window.onload = function(){
         d.width = sequenceW/linenumbers.length;
         d.height = sequenceH;
         d.index = i;
+        d.dialogue = dialogueArray[i];
         sequenceData.push(d);
       }
+
+      var tip = d3.tip()
+                  .attr('class', 'd3-tip')
+                  .direction('s');
+
+      sequenceSvg.call(tip);
       var sequenceRects = sequenceSvg.selectAll("rect")
             .data(sequenceData)
             .enter()
@@ -131,6 +138,7 @@ window.onload = function(){
                   .first()
                   .children("li:eq("+d.index+")")
                   .addClass("highlight");
+              tip.html(d.dialogue).show();
             })
             .on("mouseout", function(d){
               d3.select(this).style("fill", fillColor);
@@ -153,6 +161,7 @@ window.onload = function(){
                   .first()
                   .children("li:eq("+d.index+")")
                   .removeClass("highlight");
+              tip.hide();
             })
             .on("click", function(d){
               $("#subtitleText").scrollTo(
@@ -185,6 +194,7 @@ window.onload = function(){
         d.text = dialogueArray[i];
         seqScaledData.push(d);
       }
+      seqScaledSvg.call(tip);
       var seqScaledRects = seqScaledSvg.selectAll("rect")
             .data(seqScaledData)
             .enter()
@@ -219,6 +229,7 @@ window.onload = function(){
                   .first()
                   .children("li:eq("+d.index+")")
                   .addClass("highlight");
+              tip.html(d.dialogue).show();
             })
             .on("mouseout", function(d){
               d3.select(this).style("fill", fillColor);
@@ -241,6 +252,7 @@ window.onload = function(){
                   .first()
                   .children("li:eq("+d.index+")")
                   .removeClass("highlight");
+              tip.hide();
             })
             .on("click", function(d){
               $("#subtitleText").scrollTo(
@@ -279,6 +291,7 @@ window.onload = function(){
         d.text = dialogueArray[i];
         timeScaledData.push(d);
       }
+      timeScaledSvg.call(tip);
       var timeScaledRects = timeScaledSvg.selectAll("rect")
             .data(timeScaledData)
             .enter()
@@ -313,6 +326,7 @@ window.onload = function(){
                   .first()
                   .children("li:eq("+d.index+")")
                   .addClass("highlight");
+              tip.html(d.dialogue).show();
             })
             .on("mouseout", function(d){
               d3.select(this).style("fill", fillColor);
@@ -335,6 +349,7 @@ window.onload = function(){
                   .first()
                   .children("li:eq("+d.index+")")
                   .removeClass("highlight");
+              tip.hide();
             })
             .on("click", function(d){
               $("#subtitleText").scrollTo(
@@ -372,6 +387,7 @@ window.onload = function(){
         d.text = dialogueArray[i];
         timeScaledWidthData.push(d);
       }
+      timeScaledWidthSvg.call(tip);
       var timeScaledWidthRects = timeScaledWidthSvg.selectAll("rect")
             .data(timeScaledWidthData)
             .enter()
@@ -406,6 +422,7 @@ window.onload = function(){
                   .first()
                   .children("li:eq("+d.index+")")
                   .addClass("highlight");
+              tip.html(d.dialogue).show();
             })
             .on("mouseout", function(d){
               d3.select(this).style("fill", fillColor);
@@ -428,6 +445,7 @@ window.onload = function(){
                   .first()
                   .children("li:eq("+d.index+")")
                   .removeClass("highlight");
+              tip.hide();
             })
             .on("click", function(d){
               $("#subtitleText").scrollTo(
@@ -465,6 +483,7 @@ window.onload = function(){
         d.text = dialogueArray[i];
         timeScaledEqualData.push(d);
       }
+      timeScaledEqualSvg.call(tip);
       var timeScaledEqualRects = timeScaledEqualSvg.selectAll("rect")
             .data(timeScaledEqualData)
             .enter()
@@ -499,6 +518,7 @@ window.onload = function(){
                   .first()
                   .children("li:eq("+d.index+")")
                   .addClass("highlight");
+              tip.html(d.dialogue).show();
             })
             .on("mouseout", function(d){
               d3.select(this).style("fill", fillColor);
@@ -521,6 +541,7 @@ window.onload = function(){
                   .first()
                   .children("li:eq("+d.index+")")
                   .removeClass("highlight");
+              tip.hide();
             })
             .on("click", function(d){
               $("#subtitleText").scrollTo(
@@ -558,6 +579,7 @@ window.onload = function(){
         d.text = dialogueArray[i];
         timeScaledFisheyeData.push(d);
       }
+      timeScaledFisheyeSvg.call(tip);
       var timeScaledFisheyeRects = timeScaledFisheyeSvg.selectAll("rect")
             .data(timeScaledFisheyeData)
             .enter()
@@ -592,6 +614,7 @@ window.onload = function(){
                   .first()
                   .children("li:eq("+d.index+")")
                   .addClass("highlight");
+              tip.html(d.dialogue).show();
             })
             .on("mouseout", function(d){
               d3.select(this).style("fill", fillColor);
@@ -614,6 +637,7 @@ window.onload = function(){
                   .first()
                   .children("li:eq("+d.index+")")
                   .removeClass("highlight");
+              tip.hide();
             })
             .on("click", function(d){
               $("#subtitleText").scrollTo(
