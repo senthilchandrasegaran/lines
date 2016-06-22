@@ -7,13 +7,13 @@ utterances.
 Movie subtitle files are a convenient sample: they provide the dialogues
 along with the timestamps.
 I've explored a few ways to visualize these dialogues based on data from
-subtitle files. 
+subtitle files.
 Note that this only works with SRT files for the time being.
 
 
 **Try it out**
 
-You can try out the visualizations [here](http://web.ics.purdue.edu/~rchandr/subtitles/subtitles.html).
+You can try out the visualizations [here](http://senthilchandrasegaran.github.io/lines/).
 
 
 **Dependencies**
