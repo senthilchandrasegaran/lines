@@ -1,1 +1,193 @@
-my page
+<!Doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>Subtitle Visualizations</title>
+<style type="text/css">
+body{
+  font: 14px Georgia, Serif;
+  margin: 0;
+  padding: 0
+}
+#explanation{
+  position: absolute;
+  left: 0px;
+  width: 70%;
+  height: 100%;
+  border-right: 1px solid #d0d0d0;
+}
+#subtitles{
+  position: absolute;
+  right: 0px;
+  float: right;
+  width: 30%;
+  height: 100%;
+}
+#fileDiv{
+  height: 30px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  border-bottom: 1px solid #d0d0d0;
+}
+#fileInput{
+  margin-left: 50px;
+  margin-top: 5px;
+}
+#subtitleText{
+  height: 95%;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-right: auto;
+  overflow-y: auto;
+  font: 12px Courier;
+  border-bottom: 1px solid #d0d0d0;
+}
+.header{
+  position: relative;
+  font: 25px Helvetica, Sans-Serif;
+  align: center;
+}
+.author{
+  position: relative;
+  font: 15px Helvetica, Sans-Serif;
+  color: #a0a0a0;
+  align: center;
+}
+.paragraph{
+  align: left;
+  margin-left: auto;
+  margin-right: auto;
+  width: 95%;
+}
+.subsTimeline{
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid #d0d0d0;
+  width: 95%;
+  height: 30px;
+}
+ul {
+  list-style-type: none;
+  margin-left: 0px;
+  padding-left: 0px;
+}
+li{
+  padding-left: 5px;
+  padding-right: 5px;
+  background-color: #ffffff;
+  color: #000000;
+}
+.highlight{
+  background-color: #dc143c;
+  color: #ffffff;
+}
+.d3-tip {
+  line-height: 1;
+  font: 11px Courier;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  border-radius: 2px;
+  word-wrap: break-word;
+  max-width: 250px;
+}
+</style>
+<script type="text/javascript" src="./javascripts/d3.v3.min.js"></script>
+<script type="text/javascript" src="./javascripts/d3.tooltip.js"></script>
+<script type="text/javascript" src="./javascripts/fisheye.js"></script>
+<script type="text/javascript" src="./javascripts/jquery.js"></script>
+<script type="text/javascript" src="./javascripts/jquery.scrollTo-min.js"></script>
+
+</head>
+<body>
+<div id="subtitles">
+  <div id="fileDiv">
+    <input type="file" id="fileInput">
+  </div>
+  <div id="subtitleText">
+  </div>
+</div>
+<div id="explanation">
+  <p align="center">
+  <span class="header">
+    Lines of lines. On a line.
+  </span>
+  <br>
+  <span class="author">
+    Visualizing movie dialogues as lines on a timeline.
+    <br><br>
+    Senthil Chandrasegaran
+  </span>
+  <br>
+  </p>
+  <p class="paragraph">
+  Let's consider a video player that shows all the dialogues in a movie,
+  extracted from the subtitle file, right under the video timeline,
+  graphically.
+  If you have an SRT file, try uploading it onto this page using the
+  button on the top right.
+  <br><br>
+  The simplest representation of the data would be to show the
+  dialogs in a simple sequence of lines.
+  You can interact with the timeline below. 
+  Hover on the timeline to highlight the corresponding dialogue on the
+  right, or click to scroll to the dialogue.
+  </p>
+  <div class="subsTimeline" id="sequence">
+  </div>
+  <p class="paragraph">
+  We can see that this is not the best use of space, and, well, it's
+  a little boring.
+  How about we scale the vertical lengths of the bars to the number of
+  words in the dialog?
+  </p>
+  <div class="subsTimeline" id="seqScaled">
+  </div>
+  <p class="paragraph">
+  That's more interesting.
+  Now since the subtitles have time information as well, how about
+  representing the length of the movie as the length of the chart, and
+  inserting the vertical bars corresponding to the <i>times</i> at which
+  the dialogs are spoken?
+  </p>
+  <div class="subsTimeline" id="timeScaled">
+  </div>
+  <p class="paragraph">
+  All right, now we're starting to see gaps in the movie where there is
+  no dialogue.
+  I wonder if this can be correlated with action sequences, say, in
+  movies such as <i>Ronin</i>.
+  Note that the bar widths are no longer accurate, as they follow the
+  previous scaling that was dependent on the <i>number of dialogues</i>
+  in the entire subtitle sequence.
+  For a better representation, how about scaling the widths of the bars
+  to the duration of the dialogues?
+  </p>
+  <div class="subsTimeline" id="timeScaledWidth">
+  </div>
+  <p class="paragraph">
+  This may not be the best idea, since the lines are not easily
+  selectable.
+  We can work around this in a number of ways.
+  The first, and simpler representation is to just equalize the widths
+  of the bars to a selectable value. 
+  The bars are translucent anyway, so denser pieces of dialogue will
+  show up as darker regions.
+  </p>
+  <div class="subsTimeline" id="timeScaledEqual">
+  </div>
+  <p class="paragraph">
+  The other option is to use fisheye distortion with the scaled widths.
+  The local zooming effect will make the selection a little easier.
+  </p>
+  <div class="subsTimeline" id="timeScaledFisheye">
+  </div>
+  <p class="paragraph">
+  More thoughts on such representations and the value they may or may
+  not add, coming soon.
+  </p>
+</div>
+<script type="text/javascript" src="./javascripts/subtitles.js"></script>
+</body>
+
